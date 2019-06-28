@@ -1,18 +1,12 @@
-// Load CSS Reset from NPM
-// @import "~normalize.css";
-
-body { font-family: sans-serif; }
-
-
 // =============================================
 // CALENDAR SETTINGS
 $weekdays: ("monday", "tuesday", "wednesday", "thursday", "friday");
-$times: ("9am", "10am", "11am", "noon", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm");
-$generate: "both"; // options: "class", "data", "both"
+// $weekdays: ("sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday");
 
-// Optional tracks
-$weekdayTrack: true; // options: true, false
-$timeTrack: true; // options: true, false
+$times: ("8am", "9am", "10am", "11am", "noon", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm");
+// $times: ("midnight", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "noon", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm");
+
+$generate: "both"; // options: "class", "data", "both"
 
 // Cell sizes
 $columnWidth: 1fr; // Eg: 1fr, 400px…
@@ -21,23 +15,21 @@ $rowHeight: 1fr; // Eg: 1fr, 100px…
 
 // =============================================
 // Calendar class setup
-.calendar {
+
+$template-columns: "[time] auto ";
+@each $day in $weekdays { 
+  $template-columns: $template-columns + "[#{$day}] #{$columnWidth} ";
+}
+
+// Calendar rows
+$template-rows: "[weekday] auto ";
+@each $time in $times { 
+  $template-rows: $template-rows + "[line-#{$time}] #{$rowHeight} ";
+}
+
+.calendar {  
+  position: relative;
   display: grid;
-
-  // Calendar columns
-  $template-columns: "";
-  @if $timeTrack { $template-columns: "[time] auto "; }
-  @each $day in $weekdays { 
-    $template-columns: $template-columns + "[#{$day}] #{$columnWidth} ";
-  }
-
-  // Calendar rows
-  $template-rows: "";
-  @if $weekdayTrack { $template-rows: "[weekday] auto "; }
-  @each $time in $times { 
-    $template-rows: $template-rows + "[line-#{$time}] #{$rowHeight} ";
-  }
-  
   grid-template-columns: unquote($template-columns);
   grid-template-rows: unquote($template-rows);
 }
@@ -81,25 +73,23 @@ $rowHeight: 1fr; // Eg: 1fr, 100px…
 // =============================================
 // Tracks
 
-@if $weekdayTrack {
-  .weekday {
-    grid-column: var(--weekday) 1;
-    grid-row: 1 / 2;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-  }
+.weekday {
+  grid-column: var(--weekday) 1;
+  grid-row: 1 / 2;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
-@if $timeTrack {
-  .time {
-    grid-column: time 1;
-    grid-row: var(--start-time) 1;
-    position: sticky;
-    left: 0;
-    z-index: 2;
-  }
+
+.time {
+  grid-column: time 1;
+  grid-row: var(--start-time) 1;
+  position: sticky;
+  left: 0;
+  z-index: 2;
 }
+
 
 
 // =============================================

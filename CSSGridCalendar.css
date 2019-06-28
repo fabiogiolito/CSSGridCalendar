@@ -1,10 +1,8 @@
-body {
-  font-family: sans-serif; }
-
 .calendar {
+  position: relative;
   display: grid;
   grid-template-columns: [time] auto [monday] 1fr [tuesday] 1fr [wednesday] 1fr [thursday] 1fr [friday] 1fr ;
-  grid-template-rows: [weekday] auto [line-9am] 1fr [line-10am] 1fr [line-11am] 1fr [line-noon] 1fr [line-1pm] 1fr [line-2pm] 1fr [line-3pm] 1fr [line-4pm] 1fr [line-5pm] 1fr [line-6pm] 1fr ; }
+  grid-template-rows: [weekday] auto [line-8am] 1fr [line-9am] 1fr [line-10am] 1fr [line-11am] 1fr [line-noon] 1fr [line-1pm] 1fr [line-2pm] 1fr [line-3pm] 1fr [line-4pm] 1fr [line-5pm] 1fr [line-6pm] 1fr [line-7pm] 1fr [line-8pm] 1fr ; }
 
 .monday {
   --weekday: monday; }
@@ -35,6 +33,18 @@ body {
 
 .event[data-weekday="friday"] {
   --weekday: friday; }
+
+.from-8am {
+  --start-time: line-8am; }
+
+.to-8am {
+  --end-time: line-8am ; }
+
+.event[data-start="8am"] {
+  --start-time: line-8am; }
+
+.event[data-end="8am"] {
+  --end-time: line-8am; }
 
 .from-9am {
   --start-time: line-9am; }
@@ -155,6 +165,30 @@ body {
 
 .event[data-end="6pm"] {
   --end-time: line-6pm; }
+
+.from-7pm {
+  --start-time: line-7pm; }
+
+.to-7pm {
+  --end-time: line-7pm ; }
+
+.event[data-start="7pm"] {
+  --start-time: line-7pm; }
+
+.event[data-end="7pm"] {
+  --end-time: line-7pm; }
+
+.from-8pm {
+  --start-time: line-8pm; }
+
+.to-8pm {
+  --end-time: line-8pm ; }
+
+.event[data-start="8pm"] {
+  --start-time: line-8pm; }
+
+.event[data-end="8pm"] {
+  --end-time: line-8pm; }
 
 .event {
   grid-column: var(--weekday) 1;
