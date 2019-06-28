@@ -1,0 +1,164 @@
+// Load CSS Reset from NPM
+// @import "~normalize.css";
+
+body { font-family: sans-serif; }
+
+
+// =============================================
+// CALENDAR SETTINGS
+$weekdays: ("monday", "tuesday", "wednesday", "thursday", "friday");
+$times: ("9am", "10am", "11am", "noon", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm");
+$generate: "both"; // options: "class", "data", "both"
+
+// Optional tracks
+$weekdayTrack: true; // options: true, false
+$timeTrack: true; // options: true, false
+
+// Cell sizes
+$columnWidth: 1fr; // Eg: 1fr, 400px…
+$rowHeight: 1fr; // Eg: 1fr, 100px…
+
+
+// =============================================
+// Calendar class setup
+.calendar {
+  display: grid;
+
+  // Calendar columns
+  $template-columns: "";
+  @if $timeTrack { $template-columns: "[time] auto "; }
+  @each $day in $weekdays { 
+    $template-columns: $template-columns + "[#{$day}] #{$columnWidth} ";
+  }
+
+  // Calendar rows
+  $template-rows: "";
+  @if $weekdayTrack { $template-rows: "[weekday] auto "; }
+  @each $time in $times { 
+    $template-rows: $template-rows + "[line-#{$time}] #{$rowHeight} ";
+  }
+  
+  grid-template-columns: unquote($template-columns);
+  grid-template-rows: unquote($template-rows);
+}
+
+
+// =============================================
+// Weekday classes (.monday)
+@each $day in $weekdays {
+  @if ($generate == "class" or $generate == "both") {
+    .#{$day} { --weekday: #{$day};  }
+  }
+  @if ($generate == "data" or $generate == "both") {
+    .event[data-weekday="#{$day}"] { --weekday: #{$day}; }
+  }
+}
+
+
+// =============================================
+// Start time classes (.from-10am)
+// Endtime classes (.to-10am)
+@each $time in $times {
+  @if ($generate == "class" or $generate == "both") {
+    .from-#{$time} { --start-time: line-#{$time}; }
+    .to-#{$time} { --end-time: line-#{$time} }
+  }
+  @if ($generate == "data" or $generate == "both") {
+    .event[data-start="#{$time}"] { --start-time: line-#{$time}; }
+    .event[data-end="#{$time}"] { --end-time: line-#{$time}; }
+  }
+}
+
+// =============================================
+// Position event in grid
+
+.event {
+  grid-column: var(--weekday) 1;
+  grid-row: var(--start-time) / var(--end-time);
+  z-index: 1;
+}
+
+// =============================================
+// Tracks
+
+@if $weekdayTrack {
+  .weekday {
+    grid-column: var(--weekday) 1;
+    grid-row: 1 / 2;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+}
+
+@if $timeTrack {
+  .time {
+    grid-column: time 1;
+    grid-row: var(--start-time) 1;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+  }
+}
+
+
+// =============================================
+// Highlight a day and time
+
+.highlight-day {
+  grid-column: var(--weekday) 1;
+  grid-row: 1 / -1;
+  position: relative;
+}
+
+.highlight-time,
+.current-time {
+  grid-column: 1 / -1;
+  grid-row: var(--start-time) 1;  
+  position: relative;
+  left: 0;
+  right: 0;
+}
+
+.current-time { 
+  z-index: 2;
+  height: 1px;
+  background: red;
+}
+
+
+// =============================================
+// Basic Theme
+
+.event {
+  margin: 2px;
+  padding: 0.5em;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1), 0 2px 2px rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+
+.weekday {
+  text-align: center;
+  background: white;
+  padding: 1em;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.time {
+  background: white;
+  padding: 4px 1em;
+  font-size: 0.75em;
+  color: #AAA;
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.highlight-day {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.highlight-time {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.current-time {}

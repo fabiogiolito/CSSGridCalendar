@@ -1,0 +1,222 @@
+body {
+  font-family: sans-serif; }
+
+.calendar {
+  display: grid;
+  grid-template-columns: [time] auto [monday] 1fr [tuesday] 1fr [wednesday] 1fr [thursday] 1fr [friday] 1fr ;
+  grid-template-rows: [weekday] auto [line-9am] 1fr [line-10am] 1fr [line-11am] 1fr [line-noon] 1fr [line-1pm] 1fr [line-2pm] 1fr [line-3pm] 1fr [line-4pm] 1fr [line-5pm] 1fr [line-6pm] 1fr ; }
+
+.monday {
+  --weekday: monday; }
+
+.event[data-weekday="monday"] {
+  --weekday: monday; }
+
+.tuesday {
+  --weekday: tuesday; }
+
+.event[data-weekday="tuesday"] {
+  --weekday: tuesday; }
+
+.wednesday {
+  --weekday: wednesday; }
+
+.event[data-weekday="wednesday"] {
+  --weekday: wednesday; }
+
+.thursday {
+  --weekday: thursday; }
+
+.event[data-weekday="thursday"] {
+  --weekday: thursday; }
+
+.friday {
+  --weekday: friday; }
+
+.event[data-weekday="friday"] {
+  --weekday: friday; }
+
+.from-9am {
+  --start-time: line-9am; }
+
+.to-9am {
+  --end-time: line-9am ; }
+
+.event[data-start="9am"] {
+  --start-time: line-9am; }
+
+.event[data-end="9am"] {
+  --end-time: line-9am; }
+
+.from-10am {
+  --start-time: line-10am; }
+
+.to-10am {
+  --end-time: line-10am ; }
+
+.event[data-start="10am"] {
+  --start-time: line-10am; }
+
+.event[data-end="10am"] {
+  --end-time: line-10am; }
+
+.from-11am {
+  --start-time: line-11am; }
+
+.to-11am {
+  --end-time: line-11am ; }
+
+.event[data-start="11am"] {
+  --start-time: line-11am; }
+
+.event[data-end="11am"] {
+  --end-time: line-11am; }
+
+.from-noon {
+  --start-time: line-noon; }
+
+.to-noon {
+  --end-time: line-noon ; }
+
+.event[data-start="noon"] {
+  --start-time: line-noon; }
+
+.event[data-end="noon"] {
+  --end-time: line-noon; }
+
+.from-1pm {
+  --start-time: line-1pm; }
+
+.to-1pm {
+  --end-time: line-1pm ; }
+
+.event[data-start="1pm"] {
+  --start-time: line-1pm; }
+
+.event[data-end="1pm"] {
+  --end-time: line-1pm; }
+
+.from-2pm {
+  --start-time: line-2pm; }
+
+.to-2pm {
+  --end-time: line-2pm ; }
+
+.event[data-start="2pm"] {
+  --start-time: line-2pm; }
+
+.event[data-end="2pm"] {
+  --end-time: line-2pm; }
+
+.from-3pm {
+  --start-time: line-3pm; }
+
+.to-3pm {
+  --end-time: line-3pm ; }
+
+.event[data-start="3pm"] {
+  --start-time: line-3pm; }
+
+.event[data-end="3pm"] {
+  --end-time: line-3pm; }
+
+.from-4pm {
+  --start-time: line-4pm; }
+
+.to-4pm {
+  --end-time: line-4pm ; }
+
+.event[data-start="4pm"] {
+  --start-time: line-4pm; }
+
+.event[data-end="4pm"] {
+  --end-time: line-4pm; }
+
+.from-5pm {
+  --start-time: line-5pm; }
+
+.to-5pm {
+  --end-time: line-5pm ; }
+
+.event[data-start="5pm"] {
+  --start-time: line-5pm; }
+
+.event[data-end="5pm"] {
+  --end-time: line-5pm; }
+
+.from-6pm {
+  --start-time: line-6pm; }
+
+.to-6pm {
+  --end-time: line-6pm ; }
+
+.event[data-start="6pm"] {
+  --start-time: line-6pm; }
+
+.event[data-end="6pm"] {
+  --end-time: line-6pm; }
+
+.event {
+  grid-column: var(--weekday) 1;
+  grid-row: var(--start-time)/var(--end-time);
+  z-index: 1; }
+
+.weekday {
+  grid-column: var(--weekday) 1;
+  grid-row: 1 / 2;
+  position: sticky;
+  top: 0;
+  z-index: 2; }
+
+.time {
+  grid-column: time 1;
+  grid-row: var(--start-time) 1;
+  position: sticky;
+  left: 0;
+  z-index: 2; }
+
+.highlight-day {
+  grid-column: var(--weekday) 1;
+  grid-row: 1 / -1;
+  position: relative; }
+
+.highlight-time,
+.current-time {
+  grid-column: 1 / -1;
+  grid-row: var(--start-time) 1;
+  position: relative;
+  left: 0;
+  right: 0; }
+
+.current-time {
+  z-index: 2;
+  height: 1px;
+  background: red; }
+
+.event {
+  margin: 2px;
+  padding: 0.5em;
+  background: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px; }
+
+.weekday {
+  text-align: center;
+  background: white;
+  padding: 1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+
+.time {
+  background: white;
+  padding: 4px 1em;
+  font-size: 0.75em;
+  color: #AAA;
+  border-right: 1px solid rgba(0, 0, 0, 0.1); }
+
+.highlight-day {
+  background: rgba(0, 0, 0, 0.03); }
+
+.highlight-time {
+  background: rgba(0, 0, 0, 0.03); }
+
+/*# sourceMappingURL=CSSGridCalendar.css.map */
