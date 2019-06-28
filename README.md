@@ -1,6 +1,10 @@
 # CSSGridCalendar
 Simple and Customizable Calendar UI built with CSS Grid.
 
+![calendar preview](images/calendar.png)
+
+---
+
 ## Basic usage
 
 ### Display events on the calendar
