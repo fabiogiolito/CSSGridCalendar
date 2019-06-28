@@ -133,10 +133,10 @@ Changing the list changes how many rows your calendar has and what classes are g
 You can follow any convention you'd like. For example if you want to display events from 10am to 3pm, prefer 24h time notation, and need 30 minutes granularity you could do:
 
 ``` scss
-$times: ("10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00");
+$times: ("10h00", "10h30", "11h00", "11h30", "12h00", "12h30", "13h00", "13h30", "14h00", "14h30", "15h00");
 ```
 
-This would create classes like `.from-11:30`, `.to-14:00`.
+This would create classes like `.from-11h30` and `.to-14h00`.
 
 
 ### Use data-attributes instead of classes
