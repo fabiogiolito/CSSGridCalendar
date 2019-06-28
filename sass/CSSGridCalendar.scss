@@ -64,10 +64,16 @@ $template-rows: "[weekday] auto ";
 // =============================================
 // Position event in grid
 
-.event {
+.event, 
+.event-group {
   grid-column: var(--weekday) 1;
   grid-row: var(--start-time) / var(--end-time);
   z-index: 1;
+}
+
+.event-group {
+  display: flex;
+  .event { flex: 1; }
 }
 
 // =============================================

@@ -81,6 +81,23 @@ Eg.: Current time is `1:15pm`
 - `style="top: 25%"` sets the minutes (15 minutes = 25% of an hour)
 
 
+### Display events with the same time
+
+There's limited support for multiple events at the same time (overlapping). This will be added when CSS subgrid arrives on major browsers.
+
+For now you can use `.event-group` to group events that have the same start-time and end-time.
+
+``` html
+<div class="calendar">
+
+  <div class="event-group thursday from-3pm to-5pm">
+    <div class="event">Talk on Room 1</div>
+    <div class="event">Talk on Room 2</div>
+  </div>
+
+</div>
+```
+
 ---
 
 ## Customization 

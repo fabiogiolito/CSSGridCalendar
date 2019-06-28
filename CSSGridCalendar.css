@@ -190,10 +190,16 @@
 .event[data-end="8pm"] {
   --end-time: line-8pm; }
 
-.event {
+.event,
+.event-group {
   grid-column: var(--weekday) 1;
   grid-row: var(--start-time)/var(--end-time);
   z-index: 1; }
+
+.event-group {
+  display: flex; }
+  .event-group .event {
+    flex: 1; }
 
 .weekday {
   grid-column: var(--weekday) 1;
