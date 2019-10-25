@@ -3,6 +3,10 @@ Simple and Customizable Calendar UI built with CSS Grid.
 
 Inspired by [a post on CSS Tricks](https://css-tricks.com/building-a-conference-schedule-with-css-grid/?unapproved=1733824&moderation-hash=3a4949bc8513fe0cd32e1a724d0d4510#comment-1733824), but doing a different approach.
 
+## Demo
+
+https://codepen.io/fabiogiolito/pen/OGMyqj
+
 ![calendar preview](images/calendar.png)
 
 ---
